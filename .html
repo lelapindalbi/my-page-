@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EL PATRON</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: black;
+      overflow: hidden;
+    }
+
+    
+
+    
+      100% { transform: rotate(360deg) scale(1.2); }
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.05), transparent 60%);
+      pointer-events: none;
+    }
+      color: white;
+      height: 100vh;
+    }
+
+    /* BACKGROUND */
+    .bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at center, rgba(255,0,170,0.18), transparent 35%),
+        linear-gradient(to bottom, #050008 0%, #120018 40%, #050008 100%);
+    }
+
+    .bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,0,170,0.08), rgba(0,183,255,0.04)),
+        url('cyber-night.jpg') center/cover no-repeat;
+      opacity: 0.38;
+      filter: blur(1px) saturate(1.25);
+      transform: scale(1.03);
+    }
+
+    .bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.015),
+          rgba(255,255,255,0.015) 1px,
+          transparent 1px,
+          transparent 4px
+        );
+      mix-blend-mode: overlay;
+      opacity: 0.4;
+      animation: flicker 6s infinite;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 0.25; }
+      50% { opacity: 0.45; }
+      100% { opacity: 0.25; }
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at center, rgba(255,0,140,0.12), rgba(0,0,0,0.92)),
+        linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.85));
+      z-index: -2;
+    }
+
+    /* ENTER SCREEN */
+    .enter-screen {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      cursor: pointer;
+      transition: opacity 0.8s ease;
+    }
+
+    .enter-text {
+      font-size: 2rem;
+      color: white;
+      font-weight: 700;
+      text-shadow: 0 0 20px #ff00aa;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+      100% { opacity: 0.5; transform: scale(1); }
+    }
+
+    /* MAIN CARD */
+    .container {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      width: 420px;
+      padding: 35px;
+      border-radius: 28px;
+      background: rgba(10,10,10,0.28);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(22px);
+      text-align: center;
+      box-shadow:
+        0 0 45px rgba(255,0,170,0.15),
+        0 0 120px rgba(0,140,255,0.08),
+        inset 0 0 25px rgba(255,255,255,0.03);
+      animation: appear 1.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: none !important;
+      outline: none !important;
+      background: transparent !important;
+      box-shadow:
+        0 0 25px rgba(255,0,170,0.35),
+        0 0 50px rgba(0,183,255,0.2);
+      margin-bottom: 20px;
+      animation: neonPulse 3s infinite;
+      transition: 0.35s ease;
+    }
+
+    .avatar:hover {
+      transform: scale(1.08) rotate(2deg);
+      filter:
+        drop-shadow(0 0 20px #ff00aa)
+        drop-shadow(0 0 35px #00b7ff);
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #ff00aa, #00b7ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .bio {
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 28px;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .link {
+      text-decoration: none;
+      color: white;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.25s ease;
+      font-weight: 600;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255,0,170,0.18), rgba(0,183,255,0.18));
+      opacity: 0;
+      transition: 0.25s;
+    }
+
+    .link:hover::before {
+      opacity: 1;
+    }
+
+    .link:hover {
+      transform: scale(1.05) translateY(-2px);
+      box-shadow:
+        0 0 25px rgba(255,0,170,0.22),
+        0 0 45px rgba(0,183,255,0.12);
+      letter-spacing: 2px;
+    }
+
+    .link span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer {
+      margin-top: 25px;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.75rem;
+    }
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 50%;
+      animation: float 8s linear infinite;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.8;
+      }
+      to {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* GLITCH EFFECT */
+    .glitch {
+      position: relative;
+      animation: glitch 2s infinite;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    /* SCANLINES */
+    .scanlines::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.02),
+        rgba(255,255,255,0.02) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: overlay;
+    }
+
+    /* CARD HOVER */
+    .card:hover {
+      transform: scale(1.015);
+      transition: 0.35s ease;
+      box-shadow:
+        0 0 60px rgba(255,0,170,0.25),
+        0 0 120px rgba(0,183,255,0.12);
+    }
+
+    /* NEON PULSE */
+    .avatar {
+      animation: neonPulse 3s infinite;
+    }
+
+    @keyframes neonPulse {
+      0% { filter: drop-shadow(0 0 5px #ff00aa); }
+      50% { filter: drop-shadow(0 0 20px #00b7ff); }
+      100% { filter: drop-shadow(0 0 5px #ff00aa); }
+    }
+      10% {
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body class="scanlines">
+
+  <!-- ENTER SCREEN -->
+  <div class="enter-screen" onclick="enterSite()" id="enterScreen">
+    <div class="enter-text">click to enter...</div>
+  </div>
+
+  <!-- BACKGROUND VIDEO -->
+  <div class="bg"></div>
+
+  <div class="overlay"></div>
+
+  <!-- PARTICLES -->
+  <div class="particles" id="particles"></div>
+
+  <!-- MUSIC -->
+  <audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- MAIN -->
+  <div class="container">
+    <div class="card">
+
+      <img src="avatar.png" class="avatar">
+
+      <h1 class="glitch">EL PATRON</h1>
+
+      <div class="bio glitch">
+        Hardstyle • Hardtek • Phonk • Cyber<br>
+        Coding • Festival Energy • Underground
+      </div>
+
+      <div class="links">
+
+        <a class="link" href="https://discord.gg/EtNDzWXkcR" target="_blank">
+          <span>💬 DISCORD</span>
+        </a>
+
+        <a class="link" href="https://lelapindalbi.github.io" target="_blank">
+          <span>💻 GITHUB</span>
+        </a>
+
+        <a class="link" href="https://suno.com/@lelapindalbi_off" target="_blank">
+          <span>🎵 SUNO</span>
+        </a>
+
+        <a class="link" href="https://www.youtube.com/@le_lapin_dalbi" target="_blank">
+          <span>▶ YOUTUBE</span>
+        </a>
+
+      </div>
+
+      <div class="footer">
+        hosted with GitHub Pages 💀
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const music = document.getElementById('music');
+
+    function enterSite() {
+      document.getElementById('enterScreen').style.opacity = '0';
+
+      setTimeout(() => {
+        document.getElementById('enterScreen').style.display = 'none';
+      }, 800);
+
+      music.play();
+    }
+
+    // PARTICLES
+    const particles = document.getElementById('particles');
+
+    for(let i = 0; i < 80; i++) {
+      const p = document.createElement('div');
+      p.classList.add('particle');
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      p.style.animationDelay = Math.random() * 5 + 's';
+      particles.appendChild(p);
+    }
+  </script>
+
+</body>
+</html>
