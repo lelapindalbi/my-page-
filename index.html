@@ -507,47 +507,76 @@
       #code-rain { opacity: .38; }
     }
 
+/* SHATTEREDHEART : Fraktur gothique avec dégradé */
+h1.shattered-title {
+  font-family: 'UnifrakturCook', 'UnifrakturMaguntia', serif;
+  font-size: clamp(2.05rem, 5.4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: 0;
+  font-weight: 700;
+  overflow-wrap: anywhere;
 
-    /* SHATTEREDHEART: dark grunge / metal lettering */
-    h1.shattered-title {
-      font-family: 'Metal Mania', 'Nosifer', fantasy;
-      font-size: clamp(2.05rem, 5.4vw, 3rem);
-      line-height: 1.12;
-      letter-spacing: .015em;
-      overflow-wrap: anywhere;
-      background: linear-gradient(180deg, #fff 0%, #f4eeee 35%, #bdb4b8 58%, #8b101b 80%, #ed233d 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 2px 0 rgba(0,0,0,.95))
-              drop-shadow(0 0 7px rgba(255,20,45,.65))
-              drop-shadow(2px 0 0 rgba(115,0,10,.85));
-      text-shadow: 2px 0 rgba(255,0,35,.35), -2px 0 rgba(0,0,0,.8);
-      animation: shatteredGlitch 3.7s infinite;
-    }
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #d7d7df 30%,
+    #a71930 65%,
+    #ff003c 100%
+  );
 
-    @keyframes shatteredGlitch {
-      0%, 88%, 92%, 100% {
-        transform: translateX(0) skewX(0);
-        filter: drop-shadow(0 2px 0 rgba(0,0,0,.95))
-                drop-shadow(0 0 7px rgba(255,20,45,.65))
-                drop-shadow(2px 0 0 rgba(115,0,10,.85));
-      }
-      89% {
-        transform: translateX(-2px) skewX(-2deg);
-        filter: drop-shadow(-3px 0 rgba(255,0,35,.9)) drop-shadow(3px 0 rgba(0,225,255,.45));
-      }
-      90% {
-        transform: translateX(3px) skewX(1deg);
-        filter: drop-shadow(3px 0 rgba(255,0,35,.8)) drop-shadow(-2px 0 rgba(0,225,255,.35));
-      }
-      91% { transform: translateX(-1px); }
-    }
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 
-    @media (max-width: 420px) {
-      h1.shattered-title { font-size: clamp(1.7rem, 8vw, 2.3rem); }
-    }
+  filter:
+    drop-shadow(0 2px 0 rgba(0, 0, 0, .95))
+    drop-shadow(0 0 7px rgba(255, 20, 45, .65))
+    drop-shadow(2px 0 0 rgba(115, 0, 10, .85));
 
+  text-shadow:
+    2px 0 rgba(255, 0, 35, .35),
+    -2px 0 rgba(0, 0, 0, .8);
+
+  animation: shatteredGlitch 3.7s infinite;
+}
+
+/* Animation glitch RGB */
+@keyframes shatteredGlitch {
+  0%, 88%, 92%, 100% {
+    transform: translateX(0) skewX(0);
+    filter:
+      drop-shadow(0 2px 0 rgba(0, 0, 0, .95))
+      drop-shadow(0 0 7px rgba(255, 20, 45, .65))
+      drop-shadow(2px 0 0 rgba(115, 0, 10, .85));
+  }
+
+  89% {
+    transform: translateX(-2px) skewX(-2deg);
+    filter:
+      drop-shadow(-3px 0 rgba(255, 0, 35, .9))
+      drop-shadow(3px 0 rgba(0, 225, 255, .45));
+  }
+
+  90% {
+    transform: translateX(3px) skewX(1deg);
+    filter:
+      drop-shadow(3px 0 rgba(255, 0, 35, .8))
+      drop-shadow(-2px 0 rgba(0, 225, 255, .35));
+  }
+
+  91% {
+    transform: translateX(-1px);
+  }
+}
+
+/* Adaptation aux petits écrans */
+@media (max-width: 420px) {
+  h1.shattered-title {
+    font-size: clamp(1.7rem, 8vw, 2.3rem);
+  }
+}
+    
   </style>
 </head>
 <body class="scanlines">
