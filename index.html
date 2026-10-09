@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Metal+Mania&family=Nosifer&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=UnifrakturCook:wght@700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -507,76 +507,91 @@
       #code-rain { opacity: .38; }
     }
 
-/* SHATTEREDHEART : Fraktur gothique avec dégradé */
-h1.shattered-title {
-  font-family: 'UnifrakturCook', 'UnifrakturMaguntia', serif;
-  font-size: clamp(2.05rem, 5.4vw, 3rem);
-  line-height: 1.12;
-  letter-spacing: 0;
-  font-weight: 700;
-  overflow-wrap: anywhere;
 
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #d7d7df 30%,
-    #a71930 65%,
-    #ff003c 100%
-  );
-
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-
-  filter:
-    drop-shadow(0 2px 0 rgba(0, 0, 0, .95))
-    drop-shadow(0 0 7px rgba(255, 20, 45, .65))
-    drop-shadow(2px 0 0 rgba(115, 0, 10, .85));
-
-  text-shadow:
-    2px 0 rgba(255, 0, 35, .35),
-    -2px 0 rgba(0, 0, 0, .8);
-
-  animation: shatteredGlitch 3.7s infinite;
-}
-
-/* Animation glitch RGB */
-@keyframes shatteredGlitch {
-  0%, 88%, 92%, 100% {
-    transform: translateX(0) skewX(0);
-    filter:
-      drop-shadow(0 2px 0 rgba(0, 0, 0, .95))
-      drop-shadow(0 0 7px rgba(255, 20, 45, .65))
-      drop-shadow(2px 0 0 rgba(115, 0, 10, .85));
-  }
-
-  89% {
-    transform: translateX(-2px) skewX(-2deg);
-    filter:
-      drop-shadow(-3px 0 rgba(255, 0, 35, .9))
-      drop-shadow(3px 0 rgba(0, 225, 255, .45));
-  }
-
-  90% {
-    transform: translateX(3px) skewX(1deg);
-    filter:
-      drop-shadow(3px 0 rgba(255, 0, 35, .8))
-      drop-shadow(-2px 0 rgba(0, 225, 255, .35));
-  }
-
-  91% {
-    transform: translateX(-1px);
-  }
-}
-
-/* Adaptation aux petits écrans */
-@media (max-width: 420px) {
-  h1.shattered-title {
-    font-size: clamp(1.7rem, 8vw, 2.3rem);
-  }
-}
     
+
+    /* SHATTEREDHEART — compact Fraktur title with animated white/cyan/red gradient */
+    h1.shattered-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .12em;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      margin: 0 auto 10px;
+      font-family: 'UnifrakturCook', 'UnifrakturMaguntia', serif;
+      font-size: clamp(1.05rem, 3.5vw, 2.05rem);
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -.035em;
+      white-space: nowrap;
+      overflow: visible;
+      background: none;
+      -webkit-text-fill-color: initial;
+      color: #fff;
+      text-shadow: none;
+      animation: shatteredGlitch 3.7s infinite;
+    }
+
+    h1.shattered-title .title-word {
+      display: inline-block;
+      background: linear-gradient(
+        90deg,
+        #ffffff 0%,
+        #00eaff 32%,
+        #b8fbff 48%,
+        #ff244f 72%,
+        #ffffff 100%
+      );
+      background-size: 250% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      animation: heartColorFlow 4s linear infinite;
+      filter: drop-shadow(0 0 5px rgba(0, 234, 255, .45));
+    }
+
+    h1.shattered-title .title-symbol {
+      flex: 0 0 auto;
+      display: inline-block;
+      font-family: system-ui, sans-serif;
+      font-size: .58em;
+      line-height: 1;
+      -webkit-text-fill-color: initial;
+      filter: drop-shadow(0 0 4px rgba(0, 234, 255, .25));
+    }
+
+    @keyframes heartColorFlow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 250% 50%; }
+    }
+
+    @keyframes shatteredGlitch {
+      0%, 88%, 92%, 100% { transform: translateX(0) skewX(0); }
+      89% { transform: translateX(-2px) skewX(-2deg); }
+      90% { transform: translateX(3px) skewX(1deg); }
+      91% { transform: translateX(-1px); }
+    }
+
+    @media (max-width: 600px) {
+      h1.shattered-title {
+        font-size: clamp(.88rem, 4.2vw, 1.5rem);
+        gap: .08em;
+        letter-spacing: -.045em;
+      }
+      h1.shattered-title .title-symbol { font-size: .52em; }
+    }
+
+    @media (max-width: 360px) {
+      h1.shattered-title {
+        font-size: .82rem;
+        gap: .05em;
+        letter-spacing: -.055em;
+      }
+    }
+
   </style>
 </head>
 <body class="scanlines">
@@ -604,7 +619,7 @@ h1.shattered-title {
 
       <img src="avatar.png" class="avatar">
 
-      <h1 class="glitch shattered-title">SHATTEREDHEART</h1>
+      <h1 class="glitch shattered-title"><span class="title-symbol" aria-hidden="true">🩸</span><span class="title-word">SHATTEREDHEART</span><span class="title-symbol" aria-hidden="true">🖤</span></h1>
 
       <div class="bio glitch">
         Hardstyle • Hardtek • Phonk • Cyber<br>
