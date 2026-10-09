@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#120018">
   <title>EL PATRON</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,38 +18,22 @@
     }
 
     body {
+      min-height: 100vh;
+      min-height: 100dvh;
       font-family: 'Orbitron', sans-serif;
-      background: black;
-      overflow: hidden;
-    }
-
-    
-
-    
-      100% { transform: rotate(360deg) scale(1.2); }
-    }
-
-    .card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top, rgba(255,255,255,0.05), transparent 60%);
-      pointer-events: none;
-    }
       color: white;
-      height: 100vh;
+      background: #050008;
+      overflow-x: hidden;
     }
 
     /* BACKGROUND */
     .bg {
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
       z-index: -3;
       overflow: hidden;
       background:
-        radial-gradient(circle at center, rgba(255,0,170,0.18), transparent 35%),
+        radial-gradient(circle at center, rgba(255, 0, 170, 0.18), transparent 35%),
         linear-gradient(to bottom, #050008 0%, #120018 40%, #050008 100%);
     }
 
@@ -57,8 +42,8 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(rgba(255,0,170,0.08), rgba(0,183,255,0.04)),
-        url('cyber-night.jpg') center/cover no-repeat;
+        linear-gradient(rgba(255, 0, 170, 0.08), rgba(0, 183, 255, 0.04)),
+        url('cyber-night.jpg') center / cover no-repeat;
       opacity: 0.38;
       filter: blur(1px) saturate(1.25);
       transform: scale(1.03);
@@ -68,136 +53,141 @@
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        repeating-linear-gradient(
-          to bottom,
-          rgba(255,255,255,0.015),
-          rgba(255,255,255,0.015) 1px,
-          transparent 1px,
-          transparent 4px
-        );
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.015),
+        rgba(255, 255, 255, 0.015) 1px,
+        transparent 1px,
+        transparent 4px
+      );
       mix-blend-mode: overlay;
       opacity: 0.4;
       animation: flicker 6s infinite;
     }
 
     @keyframes flicker {
-      0% { opacity: 0.25; }
+      0%, 100% { opacity: 0.25; }
       50% { opacity: 0.45; }
-      100% { opacity: 0.25; }
     }
 
     .overlay {
       position: fixed;
       inset: 0;
-      background:
-        radial-gradient(circle at center, rgba(255,0,140,0.12), rgba(0,0,0,0.92)),
-        linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.85));
       z-index: -2;
+      background:
+        radial-gradient(circle at center, rgba(255, 0, 140, 0.12), rgba(0, 0, 0, 0.82)),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.75));
+      pointer-events: none;
     }
 
     /* ENTER SCREEN */
     .enter-screen {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.92);
+      z-index: 999;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 999;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.92);
       cursor: pointer;
       transition: opacity 0.8s ease;
     }
 
     .enter-text {
-      font-size: 2rem;
       color: white;
+      font-size: clamp(1.2rem, 4vw, 2rem);
       font-weight: 700;
-      text-shadow: 0 0 20px #ff00aa;
+      text-align: center;
+      text-shadow: 0 0 20px #ff00aa, 0 0 38px #00b7ff;
       animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
-      0% { opacity: 0.5; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.05); }
-      100% { opacity: 0.5; transform: scale(1); }
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.04); }
     }
 
     /* MAIN CARD */
     .container {
       width: 100%;
-      height: 100vh;
+      min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 24px 16px;
     }
 
     .card {
-      width: 420px;
+      position: relative;
+      width: min(420px, 100%);
       padding: 35px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 28px;
-      background: rgba(10,10,10,0.28);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(10, 10, 10, 0.42);
       backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
       text-align: center;
       box-shadow:
-        0 0 45px rgba(255,0,170,0.15),
-        0 0 120px rgba(0,140,255,0.08),
-        inset 0 0 25px rgba(255,255,255,0.03);
+        0 0 45px rgba(255, 0, 170, 0.15),
+        0 0 120px rgba(0, 140, 255, 0.08),
+        inset 0 0 25px rgba(255, 255, 255, 0.03);
       animation: appear 1.2s ease;
-      position: relative;
       overflow: hidden;
     }
 
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(255, 255, 255, 0.05), transparent 60%);
+      pointer-events: none;
+    }
+
     @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0px);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .avatar {
       width: 120px;
       height: 120px;
+      max-width: 45vw;
+      max-height: 45vw;
       border-radius: 50%;
       object-fit: cover;
-      border: none !important;
-      outline: none !important;
-      background: transparent !important;
-      box-shadow:
-        0 0 25px rgba(255,0,170,0.35),
-        0 0 50px rgba(0,183,255,0.2);
       margin-bottom: 20px;
+      background: transparent;
+      box-shadow: 0 0 25px rgba(255, 0, 170, 0.35), 0 0 50px rgba(0, 183, 255, 0.2);
       animation: neonPulse 3s infinite;
-      transition: 0.35s ease;
+      transition: transform 0.35s ease;
     }
 
     .avatar:hover {
       transform: scale(1.08) rotate(2deg);
-      filter:
-        drop-shadow(0 0 20px #ff00aa)
-        drop-shadow(0 0 35px #00b7ff);
+    }
+
+    @keyframes neonPulse {
+      0%, 100% { filter: drop-shadow(0 0 5px #ff00aa); }
+      50% { filter: drop-shadow(0 0 20px #00b7ff); }
     }
 
     h1 {
-      font-size: 3rem;
-      font-weight: 800;
       margin-bottom: 10px;
+      font-size: clamp(2rem, 8vw, 3rem);
+      font-weight: 800;
       background: linear-gradient(90deg, #ff00aa, #00b7ff);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .bio {
-      color: rgba(255,255,255,0.72);
       margin-bottom: 28px;
-      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.78);
       font-size: 0.95rem;
+      line-height: 1.6;
     }
 
     .links {
@@ -207,234 +197,277 @@
     }
 
     .link {
-      text-decoration: none;
-      color: white;
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: 0.25s ease;
-      font-weight: 600;
-      letter-spacing: 1px;
       position: relative;
       overflow: hidden;
+      display: block;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, letter-spacing 0.25s ease;
     }
 
     .link::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(255,0,170,0.18), rgba(0,183,255,0.18));
+      background: linear-gradient(90deg, rgba(255, 0, 170, 0.18), rgba(0, 183, 255, 0.18));
       opacity: 0;
-      transition: 0.25s;
+      transition: opacity 0.25s ease;
     }
 
-    .link:hover::before {
-      opacity: 1;
-    }
+    .link:hover::before { opacity: 1; }
 
     .link:hover {
-      transform: scale(1.05) translateY(-2px);
-      box-shadow:
-        0 0 25px rgba(255,0,170,0.22),
-        0 0 45px rgba(0,183,255,0.12);
+      transform: scale(1.025) translateY(-2px);
+      box-shadow: 0 0 25px rgba(255, 0, 170, 0.22), 0 0 45px rgba(0, 183, 255, 0.12);
       letter-spacing: 2px;
     }
 
     .link span {
       position: relative;
-      z-index: 2;
+      z-index: 1;
     }
 
     .footer {
       margin-top: 25px;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255, 255, 255, 0.42);
       font-size: 0.75rem;
     }
 
+    /* FLOATING PARTICLES */
     .particles {
       position: fixed;
       inset: 0;
-      pointer-events: none;
       z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
     }
 
     .particle {
       position: absolute;
+      bottom: -10px;
       width: 3px;
       height: 3px;
-      background: rgba(255,255,255,0.4);
       border-radius: 50%;
-      animation: float 8s linear infinite;
+      background: rgba(255, 255, 255, 0.45);
+      animation: float linear infinite;
     }
 
     @keyframes float {
-      from {
-        transform: translateY(100vh) scale(0.5);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.8;
-      }
-      to {
-        transform: translateY(-10vh) scale(1.2);
-        opacity: 0;
-      }
+      from { transform: translateY(0) scale(0.5); opacity: 0; }
+      10% { opacity: 1; }
+      50% { opacity: 0.8; }
+      to { transform: translateY(-110vh) scale(1.2); opacity: 0; }
     }
 
-    /* GLITCH EFFECT */
+    /* GLITCH AND SCANLINES */
     .glitch {
       position: relative;
       animation: glitch 2s infinite;
     }
 
     @keyframes glitch {
-      0% { transform: translate(0); }
-      20% { transform: translate(-2px, 2px); }
-      40% { transform: translate(-2px, -2px); }
-      60% { transform: translate(2px, 2px); }
-      80% { transform: translate(2px, -2px); }
-      100% { transform: translate(0); }
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-1px, 1px); }
+      40% { transform: translate(-1px, -1px); }
+      60% { transform: translate(1px, 1px); }
+      80% { transform: translate(1px, -1px); }
     }
 
-    /* SCANLINES */
     .scanlines::before {
       content: '';
       position: fixed;
       inset: 0;
+      z-index: 1000;
       background: repeating-linear-gradient(
         to bottom,
-        rgba(255,255,255,0.02),
-        rgba(255,255,255,0.02) 1px,
+        rgba(255, 255, 255, 0.02),
+        rgba(255, 255, 255, 0.02) 1px,
         transparent 1px,
         transparent 3px
       );
       pointer-events: none;
-      z-index: 9999;
       mix-blend-mode: overlay;
     }
 
-    /* CARD HOVER */
-    .card:hover {
-      transform: scale(1.015);
-      transition: 0.35s ease;
-      box-shadow:
-        0 0 60px rgba(255,0,170,0.25),
-        0 0 120px rgba(0,183,255,0.12);
+    @media (max-width: 480px) {
+      .card { padding: 28px 22px; border-radius: 24px; }
+      .bio { font-size: 0.82rem; }
+      .link { padding: 15px 12px; }
     }
 
-    /* NEON PULSE */
-    .avatar {
-      animation: neonPulse 3s infinite;
-    }
-
-    @keyframes neonPulse {
-      0% { filter: drop-shadow(0 0 5px #ff00aa); }
-      50% { filter: drop-shadow(0 0 20px #00b7ff); }
-      100% { filter: drop-shadow(0 0 5px #ff00aa); }
-    }
-      10% {
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-10vh);
-        opacity: 0;
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
 </head>
-<body class="scanlines">
 
-  <!-- ENTER SCREEN -->
-  <div class="enter-screen" onclick="enterSite()" id="enterScreen">
-    <div class="enter-text">click to enter...</div>
+<body class="scanlines">
+  <!-- INTRO: la musique démarre après ce clic, conformément aux règles des navigateurs -->
+  <div class="enter-screen" id="enterScreen" role="button" tabindex="0" aria-label="Entrer sur le site">
+    <div class="enter-text">CLICK TO ENTER...</div>
   </div>
 
-  <!-- BACKGROUND VIDEO -->
-  <div class="bg"></div>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="overlay" aria-hidden="true"></div>
+  <div class="particles" id="particles" aria-hidden="true"></div>
 
-  <div class="overlay"></div>
+  <!-- PLAYLIST : ajoute music2.mp3, music3.mp3, etc. à la racine du dépôt -->
+  <audio id="music" preload="none"></audio>
 
-  <!-- PARTICLES -->
-  <div class="particles" id="particles"></div>
-
-  <!-- MUSIC -->
-  <audio id="music" loop>
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- MAIN -->
-  <div class="container">
-    <div class="card">
-
-      <img src="avatar.png" class="avatar">
+  <main class="container">
+    <section class="card" aria-label="Liens EL PATRON">
+      <img src="avatar.png" class="avatar" alt="Avatar EL PATRON">
 
       <h1 class="glitch">EL PATRON</h1>
 
-      <div class="bio glitch">
+      <div class="bio">
         Hardstyle • Hardtek • Phonk • Cyber<br>
         Coding • Festival Energy • Underground
       </div>
 
-      <div class="links">
-
-        <a class="link" href="https://discord.gg/EtNDzWXkcR" target="_blank">
+      <nav class="links" aria-label="Réseaux sociaux">
+        <a class="link" href="https://discord.gg/EtNDzWXkcR" target="_blank" rel="noopener noreferrer">
           <span>💬 DISCORD</span>
         </a>
 
-        <a class="link" href="https://lelapindalbi.github.io" target="_blank">
+        <a class="link" href="https://lelapindalbi.github.io" target="_blank" rel="noopener noreferrer">
           <span>💻 GITHUB</span>
         </a>
 
-        <a class="link" href="https://suno.com/@lelapindalbi_off" target="_blank">
+        <a class="link" href="https://suno.com/@lelapindalbi_off" target="_blank" rel="noopener noreferrer">
           <span>🎵 SUNO</span>
         </a>
 
-        <a class="link" href="https://www.youtube.com/@le_lapin_dalbi" target="_blank">
+        <a class="link" href="https://www.youtube.com/@le_lapin_dalbi" target="_blank" rel="noopener noreferrer">
           <span>▶ YOUTUBE</span>
         </a>
-        
-        <a class="link" href="https://https://www.tiktok.com/@le_lapin_dalbi" target="_blank">
-          <span>▶ tiktok</span>
-       </a>
 
-      </div>
+        <!-- URL corrigée : un seul https:// -->
+        <a class="link" href="https://www.tiktok.com/@le_lapin_dalbi" target="_blank" rel="noopener noreferrer">
+          <span>▶ TIKTOK</span>
+        </a>
+      </nav>
 
-      <div class="footer">
-        hosted with GitHub Pages 💀
-      </div>
-
-    </div>
-  </div>
+      <div class="footer">hosted with GitHub Pages 💀</div>
+    </section>
+  </main>
 
   <script>
     const music = document.getElementById('music');
+    const enterScreen = document.getElementById('enterScreen');
+
+    // Les morceaux sont rangés dans le dossier audio/. Ajoute les nouveaux noms ici.
+    const playlist = [
+      'audio/music-01.mp3',
+      'audio/music-02.mp3',
+      'audio/music-03.mp3',
+      'audio/music-04.mp3',
+      'audio/music-05.mp3',
+      'audio/music-06.mp3',
+      'audio/music-07.mp3'
+    ];
+
+    let shuffledPlaylist = [];
+    let currentTrack = 0;
+    let errorAttempts = 0;
+    let isEntering = false;
+
+    function shufflePlaylist() {
+      shuffledPlaylist = [...playlist];
+
+      // Mélange Fisher-Yates.
+      for (let i = shuffledPlaylist.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledPlaylist[i], shuffledPlaylist[j]] =
+          [shuffledPlaylist[j], shuffledPlaylist[i]];
+      }
+
+      currentTrack = 0;
+      errorAttempts = 0;
+    }
+
+    function playNextTrack() {
+      if (shuffledPlaylist.length === 0) {
+        shufflePlaylist();
+      }
+
+      if (currentTrack >= shuffledPlaylist.length) {
+        shufflePlaylist();
+      }
+
+      if (errorAttempts >= playlist.length) {
+        console.warn('Aucun fichier audio de la playlist n’a pu être lu. Vérifie les noms des fichiers.');
+        return;
+      }
+
+      const track = shuffledPlaylist[currentTrack];
+      currentTrack++;
+      music.src = track;
+      music.load();
+
+      const playPromise = music.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch((error) => {
+          // Si un fichier n'existe pas ou ne peut pas être lu, tenter le suivant.
+          console.warn('Morceau non lisible : ' + track, error);
+          errorAttempts++;
+          if (errorAttempts < playlist.length) {
+            playNextTrack();
+          }
+        });
+      }
+    }
+
+    music.addEventListener('ended', () => {
+      errorAttempts = 0;
+      playNextTrack();
+    });
 
     function enterSite() {
-      document.getElementById('enterScreen').style.opacity = '0';
+      if (isEntering) return;
+      isEntering = true;
 
-      setTimeout(() => {
-        document.getElementById('enterScreen').style.display = 'none';
+      enterScreen.style.opacity = '0';
+      enterScreen.style.pointerEvents = 'none';
+
+      window.setTimeout(() => {
+        enterScreen.style.display = 'none';
       }, 800);
 
-      music.play();
+      shufflePlaylist();
+      playNextTrack();
     }
 
-    // PARTICLES
+    enterScreen.addEventListener('click', enterSite);
+    enterScreen.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        enterSite();
+      }
+    });
+
+    // Particules animées
     const particles = document.getElementById('particles');
 
-    for(let i = 0; i < 80; i++) {
-      const p = document.createElement('div');
-      p.classList.add('particle');
-      p.style.left = Math.random() * 100 + 'vw';
-      p.style.animationDuration = (Math.random() * 5 + 5) + 's';
-      p.style.animationDelay = Math.random() * 5 + 's';
-      particles.appendChild(p);
+    for (let i = 0; i < 80; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + 'vw';
+      particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      particle.style.animationDelay = (Math.random() * 8) + 's';
+      particle.style.opacity = String(Math.random() * 0.7 + 0.2);
+      particles.appendChild(particle);
     }
   </script>
-
 </body>
 </html>
